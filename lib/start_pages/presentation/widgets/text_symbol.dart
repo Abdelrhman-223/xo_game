@@ -1,0 +1,39 @@
+/*
+**********Project Name: xo_game
+**********File Name: text_symbol
+**********Created At: 30-May-24 6:00 AM
+**********Author: Abdelrhman Hussein
+**********Description: 
+*/
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_icons.dart';
+import '../manager/switch_controller.dart';
+
+class TextSymbol extends StatelessWidget {
+  const TextSymbol({super.key, required this.oSymbol});
+  final bool oSymbol;
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<SwitchController>(
+      init: SwitchController(),
+      builder: (switchController) => GestureDetector(
+        onTap: () {
+          switchController.changeSymbol();
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: SvgPicture.asset(
+            oSymbol?AppIcons.oIcon:AppIcons.xIcon,
+            height: 12,
+            color: oSymbol?AppColors.mainColor:AppColors.fourthColor,
+          ),
+        ),
+      ),
+    );
+  }
+}
